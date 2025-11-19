@@ -11,7 +11,7 @@ const { Header, Content } = Layout;
 export default function AppWrapper() {
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const saved = localStorage.getItem('theme');
-        return saved ? saved === 'dark' : true;
+        return saved ? saved === 'dark' : false;
     });
 
     const toggleTheme = () => {
