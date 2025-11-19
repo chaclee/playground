@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Layout, Button, Tooltip, ConfigProvider, theme as antTheme } from 'antd';
 import { BulbOutlined, BulbFilled, GithubOutlined, SwapOutlined, LayoutOutlined, ColumnWidthOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Editor } from './components/Editor';
