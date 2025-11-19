@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useMemo } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useMemo } from 'react';
 import { Input } from 'antd';
 
 const { TextArea } = Input;

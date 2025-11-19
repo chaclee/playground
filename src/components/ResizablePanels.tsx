@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, ReactNode } from 'react';
+import { useState, useRef, useEffect, ReactNode, FC } from 'react';
 
 interface ResizablePanelsProps {
     leftPanel: ReactNode;
@@ -7,7 +7,7 @@ interface ResizablePanelsProps {
     defaultLeftWidth?: number;
 }
 
-export const ResizablePanels: React.FC<ResizablePanelsProps> = ({
+export const ResizablePanels: FC<ResizablePanelsProps> = ({
     leftPanel,
     rightPanel,
     isDarkMode = true,
