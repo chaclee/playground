@@ -6,31 +6,39 @@ option go_package = "playground/pb";
 
 // SliceService 定义了处理切片的服务
 service SliceService {
-  // ProcessNumbers 接收一个数字切片，返回处理后的数字切片
-  rpc ProcessNumbers(NumbersRequest) returns (NumbersResponse);
+  // EchoNumbers 接收一个数字切片，原样返回并附加切片信息
+  rpc EchoNumbers(NumbersRequest) returns (NumbersResponse);
 
-  // ProcessStrings 接收一个字符串切片，返回处理后的字符串切片
-  rpc ProcessStrings(StringsRequest) returns (StringsResponse);
+  // EchoStrings 接收一个字符串切片，原样返回并附加切片信息
+  rpc EchoStrings(StringsRequest) returns (StringsResponse);
 }
 
 // NumbersRequest 包含数字切片
 message NumbersRequest {
   repeated int32 numbers = 1;
+  bool numbers_is_nil = 2;  // 显式标记客户端发送的是否为 nil
 }
 
 // NumbersResponse 返回处理后的数字切片
 message NumbersResponse {
   repeated int32 processed_numbers = 1;
   string message = 2;
+  bool is_nil = 3;
+  int32 slice_length = 4;
+  int32 slice_capacity = 5;
 }
 
 // StringsRequest 包含字符串切片
 message StringsRequest {
   repeated string strings = 1;
+  bool strings_is_nil = 2;  // 显式标记客户端发送的是否为 nil
 }
 
 // StringsResponse 返回处理后的字符串切片
 message StringsResponse {
   repeated string processed_strings = 1;
   string message = 2;
+  bool is_nil = 3;
+  int32 slice_length = 4;
+  int32 slice_capacity = 5;
 }

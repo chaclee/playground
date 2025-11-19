@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net"
-	"strings"
 
 	"playground/pb"
 
@@ -17,39 +16,69 @@ type server struct {
 	pb.UnimplementedSliceServiceServer
 }
 
-// ProcessNumbers 处理数字切片：将每个数字乘以2
-func (s *server) ProcessNumbers(ctx context.Context, req *pb.NumbersRequest) (*pb.NumbersResponse, error) {
-	log.Printf("收到数字切片请求: %v", req.GetNumbers())
-
-	// 处理切片：将每个数字乘以2
-	processedNumbers := make([]int32, len(req.GetNumbers()))
-	for i, num := range req.GetNumbers() {
-		processedNumbers[i] = num * 2
+// EchoNumbers Echo 数字切片，原样返回并附加切片信息
+func (s *server) EchoNumbers(ctx context.Context, req *pb.NumbersRequest) (*pb.NumbersResponse, error) {
+	numbers := req.GetNumbers()
+	clientSentNil := req.GetNumbersIsNil()
+	
+	// 验证接收到的切片类型
+	log.Printf("========== 服务端接收数字切片分析 ==========")
+	log.Printf("收到的切片值: %v", numbers)
+	log.Printf("切片是否为 nil: %v", numbers == nil)
+	log.Printf("切片长度: %d", len(numbers))
+	log.Printf("切片容量: %d", cap(numbers))
+	log.Printf("直接访问 req.Numbers == nil: %v", req.Numbers == nil)
+	log.Printf("客户端显式标记 NumbersIsNil: %v", clientSentNil)
+	
+	// 根据客户端标记区分 nil 和空切片
+	if clientSentNil {
+		log.Printf("✅ 客户端发送的是: nil 切片")
+	} else if len(numbers) == 0 {
+		log.Printf("✅ 客户端发送的是: 空切片 []int32{}")
+	} else {
+		log.Printf("✅ 客户端发送的是: 有数据的切片")
 	}
-
-	log.Printf("处理后的数字切片: %v", processedNumbers)
+	log.Printf("==========================================\n")
 
 	return &pb.NumbersResponse{
-		ProcessedNumbers: processedNumbers,
-		Message:          fmt.Sprintf("成功处理了 %d 个数字，每个数字都乘以2", len(processedNumbers)),
+		ProcessedNumbers: numbers,  // 直接返回原始切片
+		Message:          fmt.Sprintf("Echo: 接收到 %d 个数字 (client_sent_nil=%v)", len(numbers), clientSentNil),
+		IsNil:           numbers == nil,
+		SliceLength:     int32(len(numbers)),
+		SliceCapacity:   int32(cap(numbers)),
 	}, nil
 }
 
-// ProcessStrings 处理字符串切片：将每个字符串转换为大写并添加前缀
-func (s *server) ProcessStrings(ctx context.Context, req *pb.StringsRequest) (*pb.StringsResponse, error) {
-	log.Printf("收到字符串切片请求: %v", req.GetStrings())
-
-	// 处理切片：转换为大写并添加前缀
-	processedStrings := make([]string, len(req.GetStrings()))
-	for i, str := range req.GetStrings() {
-		processedStrings[i] = "处理后-" + strings.ToUpper(str)
+// EchoStrings Echo 字符串切片，原样返回并附加切片信息
+func (s *server) EchoStrings(ctx context.Context, req *pb.StringsRequest) (*pb.StringsResponse, error) {
+	strs := req.GetStrings()
+	clientSentNil := req.GetStringsIsNil()
+	
+	// 验证接收到的切片类型
+	log.Printf("========== 服务端接收字符串切片分析 ==========")
+	log.Printf("收到的切片值: %v", strs)
+	log.Printf("切片是否为 nil: %v", strs == nil)
+	log.Printf("切片长度: %d", len(strs))
+	log.Printf("切片容量: %d", cap(strs))
+	log.Printf("直接访问 req.Strings == nil: %v", req.Strings == nil)
+	log.Printf("客户端显式标记 StringsIsNil: %v", clientSentNil)
+	
+	// 根据客户端标记区分 nil 和空切片
+	if clientSentNil {
+		log.Printf("✅ 客户端发送的是: nil 切片")
+	} else if len(strs) == 0 {
+		log.Printf("✅ 客户端发送的是: 空切片 []string{}")
+	} else {
+		log.Printf("✅ 客户端发送的是: 有数据的切片")
 	}
-
-	log.Printf("处理后的字符串切片: %v", processedStrings)
+	log.Printf("==============================================\n")
 
 	return &pb.StringsResponse{
-		ProcessedStrings: processedStrings,
-		Message:          fmt.Sprintf("成功处理了 %d 个字符串，都已转换为大写并添加了前缀", len(processedStrings)),
+		ProcessedStrings: strs,  // 直接返回原始切片
+		Message:          fmt.Sprintf("Echo: 接收到 %d 个字符串 (client_sent_nil=%v)", len(strs), clientSentNil),
+		IsNil:           strs == nil,
+		SliceLength:     int32(len(strs)),
+		SliceCapacity:   int32(cap(strs)),
 	}, nil
 }
 
