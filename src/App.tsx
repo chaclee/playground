@@ -87,9 +87,9 @@ function AppContent({ isDarkMode, toggleTheme }: { isDarkMode: boolean; toggleTh
                         }}>
                         Markdown Lab
                     </div>
-                    <span style={{ color: isDarkMode ? '#8b949e' : '#57606a', fontSize: '12px' }}>
-                        Powered by Ant Design
-                    </span>
+                    {/* <span style={{ color: isDarkMode ? '#8b949e' : '#57606a', fontSize: '12px' }}>
+                        Powered by WePie EE Team
+                    </span> */}
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
