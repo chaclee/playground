@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package sliceservice;
+
+option go_package = "playground/pb";
+
+// SliceService 定义了处理切片的服务
+service SliceService {
+  // ProcessNumbers 接收一个数字切片，返回处理后的数字切片
+  rpc ProcessNumbers(NumbersRequest) returns (NumbersResponse);
+
+  // ProcessStrings 接收一个字符串切片，返回处理后的字符串切片
+  rpc ProcessStrings(StringsRequest) returns (StringsResponse);
+}
+
+// NumbersRequest 包含数字切片
+message NumbersRequest {
+  repeated int32 numbers = 1;
+}
+
+// NumbersResponse 返回处理后的数字切片
+message NumbersResponse {
+  repeated int32 processed_numbers = 1;
+  string message = 2;
+}
+
+// StringsRequest 包含字符串切片
+message StringsRequest {
+  repeated string strings = 1;
+}
+
+// StringsResponse 返回处理后的字符串切片
+message StringsResponse {
+  repeated string processed_strings = 1;
+  string message = 2;
+}
