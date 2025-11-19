@@ -1,0 +1,150 @@
+/* Imports moved to main.tsx */
+
+:root {
+  --bg-color: #0f111a;
+  --editor-bg: rgba(255, 255, 255, 0.02);
+  --border-color: #30363d;
+  --accent-color: #1677ff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: #e6edf3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  overflow: hidden;
+  /* Prevent body scroll, handle in components */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Editor Styles */
+.markdown-editor {
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Andale Mono', monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  resize: none !important;
+  box-shadow: none !important;
+  padding: 24px !important;
+  height: 100% !important;
+}
+
+.markdown-editor:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ant-input {
+  background-color: transparent !important;
+}
+
+.ant-input:focus,
+.ant-input:hover {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.markdown-editor::placeholder {
+  color: #484f58;
+}
+
+/* Preview Styles */
+.markdown-body {
+  background-color: transparent !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.markdown-body code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  border-radius: 3px;
+}
+
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  border-radius: 6px;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #30363d;
+}
+
+/* Layout Utilities */
+.h-screen {
+  height: 100vh;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .split-pane {
+    flex-direction: column !important;
+  }
+
+  .editor-pane,
+  .preview-pane {
+    width: 100% !important;
+    height: 50vh !important;
+  }
+}
