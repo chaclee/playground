@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ConfigProvider, Layout, Typography, Card, Input, Space, Alert, Table, theme } from 'antd'
+import { ConfigProvider, Layout, Typography, Card, Space, Alert, Table, theme } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import cronstrue from 'cronstrue'
 import CronInput from './components/CronInput'

@@ -61,15 +61,15 @@ const SchedulePreview = ({ cronExpression }: SchedulePreviewProps) => {
     const dow = date.getDay()
 
     return (
-      matchField(m, minute, 0, 59) &&
-      matchField(h, hour, 0, 23) &&
-      matchField(dom, dayOfMonth, 1, 31) &&
-      matchField(mon, month, 1, 12) &&
-      matchField(dow, dayOfWeek, 0, 6)
+      matchField(m, minute) &&
+      matchField(h, hour) &&
+      matchField(dom, dayOfMonth) &&
+      matchField(mon, month) &&
+      matchField(dow, dayOfWeek)
     )
   }
 
-  const matchField = (value: number, pattern: string, min: number, max: number): boolean => {
+  const matchField = (value: number, pattern: string): boolean => {
     if (pattern === '*') return true
 
     // 处理步长 */n
