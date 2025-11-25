@@ -64,7 +64,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(({ content, isDa
             }
 
             // Wrap code block with line numbers
-            pre.style.display = 'flex';
+            (pre as HTMLElement).style.display = 'flex';
             pre.insertBefore(lineNumbers, code);
             pre.setAttribute('data-line-numbers', 'true');
         });
