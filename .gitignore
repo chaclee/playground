@@ -29,3 +29,4 @@ vendor/
 Thumbs.db
 node_modules
 .claude
+dist/*
