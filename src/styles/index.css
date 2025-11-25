@@ -154,12 +154,45 @@ body {
   border-radius: 6px;
   margin-top: 0;
   margin-bottom: 16px;
+  counter-reset: line;
+  background: transparent !important;
 }
 
 .markdown-body pre code {
   padding: 0;
-  background: transparent;
+  background: transparent !important;
   border: none;
+  display: block;
+}
+
+/* Code line numbers */
+.markdown-body pre .line-numbers {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  padding-right: 8px;
+  margin-right: 8px;
+  user-select: none;
+  opacity: 0.5;
+  border-right: 1px solid rgba(128, 128, 128, 0.2);
+  min-width: 28px;
+  font-size: 85%;
+  line-height: 1.45;
+  font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Andale Mono', monospace;
+}
+
+.markdown-body pre .line-numbers span {
+  display: block;
+  line-height: 1.45;
+}
+
+.markdown-body pre[data-line-numbers="true"] {
+  padding-left: 8px;
+}
+
+.markdown-body pre[data-line-numbers="true"] code {
+  flex: 1;
+  overflow-x: auto;
 }
 
 .markdown-body table {
@@ -174,16 +207,12 @@ body {
 .markdown-body table th,
 .markdown-body table td {
   padding: 6px 13px;
-  border: 1px solid #30363d;
+  border: 1px solid rgba(128, 128, 128, 0.2);
 }
 
 .markdown-body table th {
   font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.05);
-}
-
-.markdown-body table tr:nth-child(2n) {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 .markdown-body blockquote {
